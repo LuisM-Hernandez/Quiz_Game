@@ -46,15 +46,34 @@ function getQuestions() {
     //This variable holds the first index of the questions array which is 0
     var currentQuestion = questions[questionIndex];
 
-    //Display the title of the question
-    title.textContent = currentQuestion.title
+    title.textContent = currentQuestion.title;
 
-    //The forEach() method executes a provided function once for each array element.
-    //In simpler words it will take currentQuestion, we traversed to choices and then for each choice we will create an element buttoon with the element text content and append it to choiceEl
-    currentQuestion.choices.forEach(function (element) {
-            var choiceBtn = document.createElement('button');
-            choiceBtn.textContent = element
-            choiceEl.appendChild(choiceBtn);  
-    });
+    choiceEl.innerHTML = "";
+
+    currentQuestion.choices.forEach(function (choice, i) {
+        var choiceBtn = document.createElement('button');
+        choiceBtn.setAttribute('class', 'choice');
+        choiceBtn.setAttribute('value', choice);
+        console.log(choiceBtn);
+
+        choiceBtn.textContent = i + 1 + '. ' + choice;
+        choiceBtn.onclick = nextQuestion;
+        choiceEl.appendChild(choiceBtn);
+    })
+
+}
+
+function nextQuestion() {
+    questionIndex++
+
+    if (questionIndex === questions.length) {
+        console.log("this is the end");
+    }
+
+    else{
+        getQuestions();
+    }
     
 }
+
+
