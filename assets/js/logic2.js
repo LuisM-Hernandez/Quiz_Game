@@ -5,7 +5,7 @@ var startBtn = document.getElementById('start');
 
 //quizTimer variables
 var timerCount = document.getElementById('time');
-var seconds = 15
+var seconds = 60
 
 //getQuestion variables
 var title = document.getElementById('question-title');
@@ -31,6 +31,7 @@ function quizTimer() {
         //Span with the id time will have the text content of the seconds variable
         timerCount.textContent = seconds        
         seconds--
+        
 
         //If seconds is less than 0 clear the timerInterval
         if (seconds < 0) {
@@ -58,7 +59,7 @@ function getQuestions() {
         choiceBtn.setAttribute('class', 'choice');
         //This attribute will store the value of the choice it created
         choiceBtn.setAttribute('value', choice);
-        console.log(choiceBtn);
+        // console.log(choiceBtn);
 
         choiceBtn.textContent = i + 1 + '. ' + choice;
         //This will trigger the nextQuestion function by clicking a choice button
@@ -66,11 +67,19 @@ function getQuestions() {
         //Append the buttons to the choices id
         choiceEl.appendChild(choiceBtn);
     });
+
+    // if (currentQuestion.answer === choiceBtn.value) {
+    //     console.log('Hello');
+    // }
+
 }
 
 function nextQuestion() {
+    if (this.value != questions[questionIndex].answer) {
+        seconds -= 5        
+    }else
     questionIndex++
-
+    
     if (questionIndex === questions.length) {
         window.location.href = "highscores.html";
 
