@@ -48,32 +48,37 @@ function getQuestions() {
 
     title.textContent = currentQuestion.title;
 
+    // innerHTML property sets or returns the HTML content (inner HTML) of an element.
+    //It clear out old question choices
     choiceEl.innerHTML = "";
 
+    // This will run a forEach method that will create a button and append to the choices id to display the choices text 
     currentQuestion.choices.forEach(function (choice, i) {
         var choiceBtn = document.createElement('button');
         choiceBtn.setAttribute('class', 'choice');
+        //This attribute will store the value of the choice it created
         choiceBtn.setAttribute('value', choice);
         console.log(choiceBtn);
 
         choiceBtn.textContent = i + 1 + '. ' + choice;
+        //This will trigger the nextQuestion function by clicking a choice button
         choiceBtn.onclick = nextQuestion;
+        //Append the buttons to the choices id
         choiceEl.appendChild(choiceBtn);
-    })
-
+    });
 }
 
 function nextQuestion() {
     questionIndex++
 
     if (questionIndex === questions.length) {
-        console.log("this is the end");
-    }
+        window.location.href = "highscores.html";
 
-    else{
+    }else{
         getQuestions();
     }
-    
 }
+
+// Everytime a bad answer is chosen substract points
 
 
