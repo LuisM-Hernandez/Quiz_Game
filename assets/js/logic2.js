@@ -5,12 +5,18 @@ var startBtn = document.getElementById('start');
 
 //quizTimer variables
 var timerCount = document.getElementById('time');
+var timerInterval;
 var seconds = 60
 
 //getQuestion variables
 var title = document.getElementById('question-title');
 var choiceEl = document.getElementById('choices');
 var questionIndex = 0;
+
+// Submit variables
+var endEl = document.getElementById('end-screen');
+var initials = document.getElementById('initials');
+var submitBtn = document.getElementById('submit');
 
 startQuiz();
 //Function that start quiz
@@ -27,14 +33,11 @@ function startQuiz() {
 //Function that starts the timer
 function quizTimer() {
     
-    var timerInterval = setInterval(function () {
-        //Span with the id time will have the text content of the seconds variable
+     timerInterval = setInterval(function () {
         timerCount.textContent = seconds        
         seconds--
         
-
-        //If seconds is less than 0 clear the timerInterval
-        if (seconds < 0) {
+        if (seconds <= 0) {
             //The clearInterval() method clears a timer set with the setInterval() method.
             clearInterval(timerInterval);
         }
@@ -59,7 +62,6 @@ function getQuestions() {
         choiceBtn.setAttribute('class', 'choice');
         //This attribute will store the value of the choice it created
         choiceBtn.setAttribute('value', choice);
-        // console.log(choiceBtn);
 
         choiceBtn.textContent = i + 1 + '. ' + choice;
         //This will trigger the nextQuestion function by clicking a choice button
@@ -68,26 +70,42 @@ function getQuestions() {
         choiceEl.appendChild(choiceBtn);
     });
 
-    // if (currentQuestion.answer === choiceBtn.value) {
-    //     console.log('Hello');
-    // }
-
 }
 
 function nextQuestion() {
     if (this.value != questions[questionIndex].answer) {
-        seconds -= 5        
-    }else
+        seconds -= 10      
+    }
     questionIndex++
-    
     if (questionIndex === questions.length) {
-        window.location.href = "highscores.html";
-
+        endQuiz();
     }else{
         getQuestions();
     }
 }
 
-// Everytime a bad answer is chosen substract points
+function endQuiz() {
+    clearInterval(timerInterval)
+    questionScreen.setAttribute('class', 'hide');
+    endEl.removeAttribute('class');
+}
 
+function submitScore() {
+    var highscores = []
+    var champion = initials.value
+    var users = {
+        initials: champion,
+        score: seconds
+    }
+    
+    highscores.push(users);
+    
+    localStorage.setItem("user", JSON.stringify(highscores));
+    window.location.href = "highscores.html";
+    
+}
+
+submitBtn.onclick = submitScore
+
+// When you click on the submit the name will pass to a list in highscores
 
