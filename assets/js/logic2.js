@@ -6,7 +6,7 @@ var startBtn = document.getElementById('start');
 //quizTimer variables
 var timerCount = document.getElementById('time');
 var timerInterval;
-var seconds = 60
+var seconds = 150
 
 //getQuestion variables
 var title = document.getElementById('question-title');
