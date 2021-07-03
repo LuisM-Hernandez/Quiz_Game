@@ -19,9 +19,9 @@ var initials = document.getElementById('initials');
 var submitBtn = document.getElementById('submit');
 
 startQuiz();
+
 //Function that start quiz
 function startQuiz() {
-    //Start button will set the attribute hide to start-screen while removing the class from the question screen which will appear after clicked
     startBtn.addEventListener('click', function () {
      startScreen.setAttribute('class', "hide");
      questionScreen.removeAttribute('class');
@@ -32,7 +32,6 @@ function startQuiz() {
 
 //Function that starts the timer
 function quizTimer() {
-    
      timerInterval = setInterval(function () {
         timerCount.textContent = seconds        
         seconds--
@@ -45,11 +44,8 @@ function quizTimer() {
     },1000);
 }
 
-
 function getQuestions() {
-    //This variable holds the first index of the questions array which is 0
     var currentQuestion = questions[questionIndex];
-
     title.textContent = currentQuestion.title;
 
     // innerHTML property sets or returns the HTML content (inner HTML) of an element.
@@ -69,7 +65,6 @@ function getQuestions() {
         //Append the buttons to the choices id
         choiceEl.appendChild(choiceBtn);
     });
-
 }
 
 function nextQuestion() {
@@ -91,7 +86,8 @@ function endQuiz() {
 }
 
 function submitScore() {
-    var highscores = []
+
+    var highscores = JSON.parse(window.localStorage.getItem("Highscores")) || [];
     var champion = initials.value
     var users = {
         initials: champion,
@@ -100,12 +96,14 @@ function submitScore() {
     
     highscores.push(users);
     
-    localStorage.setItem("user", JSON.stringify(highscores));
+    localStorage.setItem("Highscore", JSON.stringify(highscores));
     window.location.href = "highscores.html";
-    
 }
 
-submitBtn.onclick = submitScore
 
-// When you click on the submit the name will pass to a list in highscores
 
+submitBtn.onclick = submitScore;
+
+/* Need Fix
+    Push more than one user to the array */
+    
