@@ -7,15 +7,17 @@
     <title>Highscores</title>
 
     <link rel="stylesheet" href="./assets/css/styles.css" />
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
   </head>
 
-  <body>
-    <div class="wrapper">
-      <h1>Highscores</h1>
-      <ol id="highscores"></ol>
+  <body class="bg-gray-900	text-blue-200">
+    <div class="wrapper text-center m-36">
+      <h1 class="text-5xl m-8">Highscores</h1>
+      <ol id="highscores" class="text-4xl text-yellow-200 m-8"></ol>
 
-      <a href="index.html"><button>Go Back</button></a>
-      <button id="clear">Clear Highscores</button>
+      <a href="index.html"><button class="px-2 py-0.5 rounded-r-lg border-2 m-2 text-2xl">Go Back</button></a>
+      <button id="clear" class="px-2 py-0.5 rounded-r-lg border-2 m-2 hover:bg-gray-700 text-2xl">Clear Highscores</button>
     </div>
 
     <script src="./assets/js/scores.js"></script>
