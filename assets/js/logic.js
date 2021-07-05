@@ -80,6 +80,7 @@ function endQuiz() {
     clearInterval(timerInterval)
     questionScreen.setAttribute('class', 'hide');
     endEl.removeAttribute('class');
+    endEl.setAttribute('class', "box-border p-4 border-8 w-1/3 m-auto text-xl h-44 text-center mt-32 text-yellow-200")
 }
 
 function submitScore() {
