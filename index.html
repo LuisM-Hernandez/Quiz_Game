@@ -7,27 +7,29 @@
     <title>Coding Quiz</title>
 
     <link rel="stylesheet" href="./assets/css/styles.css" />
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
   </head>
 
-  <body>
+  <body class ="bg-gray-900	text-blue-200">
     <div class="scores"><a href="highscores.html">View Highscores</a></div>
 
     <div class="timer">Time: <span id="time">0</span></div>
 
-    <div class="wrapper">
-      <div id="start-screen" class="start">
-        <h1>Video Game Quiz</h1>
-        <p>
+    <div class="wrapper mt-10">
+      <div id="start-screen" class="start box-border p-4  border-8 w-1/3 m-auto  text-xl">
+        <h1 class="text-center text-4xl underline mb-8 text-gray-300	">Video Game Quiz</h1>
+        <p class="mb-8">
           Try to answer the following video game related questions within the time
           limit. Keep in mind that incorrect answers will penalize your
           score/time by ten seconds!
         </p>
-        <button id="start">Start Quiz</button>
+        <button class="text-yellow-200  hover:bg-gray-700		border-2 rounded-full py-3 px-6 m-auto flex	" id="start">Start Quiz</button>
       </div>
 
-      <div id="questions" class="hide">
+      <div id="questions" class="hide ">
         <h2 id="question-title"></h2>
-        <div id="choices" class="choices"></div>
+        <div id="choices" class="choices text-yellow-200 mx-96"></div>
       </div>
 
       <div id="end-screen" class="hide">

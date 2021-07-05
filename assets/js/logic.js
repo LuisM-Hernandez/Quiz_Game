@@ -47,6 +47,7 @@ function quizTimer() {
 function getQuestions() {
     var currentQuestion = questions[questionIndex];
     title.textContent = currentQuestion.title;
+    title.setAttribute('class', 'text-5xl text-center m-10')
 
     // innerHTML property sets or returns the HTML content (inner HTML) of an element.
     //It clear out old question choices
@@ -55,7 +56,7 @@ function getQuestions() {
     // This will run a forEach method that will create a button and append to the choices id to display the choices text 
     currentQuestion.choices.forEach(function (choice, i) {
         var choiceBtn = document.createElement('button');
-        choiceBtn.setAttribute('class', 'choice');
+        choiceBtn.setAttribute('class', 'choice border-2 rounded-full py-3 px-6 hover:bg-gray-700 mx-2');
         choiceBtn.setAttribute('value', choice);
         choiceBtn.textContent = i + 1 + '. ' + choice;
         choiceBtn.onclick = nextQuestion;
